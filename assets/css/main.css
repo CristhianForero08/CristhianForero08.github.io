@@ -801,6 +801,18 @@ body {
     list-style: none
 }
 
+.intro--options2 {
+    color: #fff;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
 .intro--options>a {
     max-width: 250px;
     text-decoration: none;
