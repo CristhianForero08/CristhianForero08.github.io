@@ -1417,6 +1417,14 @@ body {
     text-transform: uppercase
 }
 
+.contact--lockup .modal--options li:nth-child(4) {
+    background-color: #1ff19f
+}
+
+.contact--lockup .modal--options li:nth-child(5) {
+    background-color: #00d6fc
+}
+
 .contact--lockup .modal--options a {
     display: block;
     width: 100%;
