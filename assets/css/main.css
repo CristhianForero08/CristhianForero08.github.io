@@ -288,6 +288,12 @@ body {
     -webkit-text-size-adjust: 100%
 }
 
+.Name {
+    color: #0F33FF;
+    font-size: 3em;
+    margin: 0.67em 0
+}
+
 .l-viewport {
     position: relative;
     width: 100%;
