@@ -294,6 +294,11 @@ body {
     margin: 0.67em 0
 }
 
+.TextProfile {
+    z-index: 5;
+    position: fixed;
+}
+
 .l-viewport {
     position: relative;
     width: 100%;
