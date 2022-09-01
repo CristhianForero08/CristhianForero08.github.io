@@ -1838,7 +1838,7 @@ body {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    animation: rotate360 60s infinite forwards linear;
+    animation: rotate360 30s infinite forwards linear;
 }
 
 .carousel__face1 {
@@ -1859,20 +1859,22 @@ span1 {
 }
 
 .carousel__face1:nth-child(1) {
-    background-image: url("https://images.pexels.com/photos/1141853/pexels-photo-1141853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-image: url("https://raw.githubusercontent.com/CristhianForero08/CristhianForero08.github.io/main/assets/img/Work1.png");
     transform: rotateY( 0deg) translateZ(430px);
 }
 
 .carousel__face1:nth-child(2) {
-    background-image: url("https://images.pexels.com/photos/1258865/pexels-photo-1258865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-image: url("https://raw.githubusercontent.com/CristhianForero08/CristhianForero08.github.io/main/assets/img/Work2.jpg");
     transform: rotateY( 40deg) translateZ(430px);
 }
 
 .carousel__face1:nth-child(3) {
-    background-image: url("https://images.pexels.com/photos/808466/pexels-photo-808466.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-image: url("https://raw.githubusercontent.com/CristhianForero08/CristhianForero08.github.io/main/assets/img/Work3.png");
     transform: rotateY( 80deg) translateZ(430px);
 }
 
+
+/*
 .carousel__face1:nth-child(4) {
     background-image: url("https://images.pexels.com/photos/1394841/pexels-photo-1394841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(120deg) translateZ(430px);
@@ -1902,6 +1904,7 @@ span1 {
     background-image: url("https://images.pexels.com/photos/1175135/pexels-photo-1175135.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(320deg) translateZ(430px);
 }
+*/
 
 @keyframes rotate360 {
     from {
