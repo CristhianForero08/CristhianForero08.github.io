@@ -922,7 +922,7 @@ body {
     display: flex;
     width: 960px;
     max-width: 80%;
-    height: 100%;
+    height: 50%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -1911,3 +1911,6 @@ span1 {
         transform: rotateY(-360deg);
     }
 }
+
+
+/* Estilo carrusel*/
