@@ -6,7 +6,7 @@ const Links = ({ tecnologias, texto, nombreProyecto }) => {
   return (
     <div className='contenedor-link'>
         
-        <a href={texto}>{nombreProyecto}</a>
+        <a href={texto} target='_blank'>{nombreProyecto}</a>
 
         <h2>{tecnologias}</h2>
     </div>
