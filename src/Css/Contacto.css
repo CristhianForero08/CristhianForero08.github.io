@@ -42,6 +42,7 @@
     display: flex; /* Flexbox */
     list-style: none; /* Eliminar los puntos de lista */
     padding: 0;
+    justify-content: center; /*enviar los elementos del div a los extremos*/
 }
 
 .redes-principal .lis {
