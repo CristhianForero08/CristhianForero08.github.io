@@ -1,0 +1,69 @@
+.sobre-mi {
+  overflow: hidden;
+  width: 100%;
+  height: 600px;
+  padding: 25px;
+  margin: 0 auto;
+  background-color: #070c16;
+}
+
+
+.sobre-mi h2{
+    text-align: center;
+    margin: 25px;
+    padding: 25px;
+    text-decoration: underline;
+    text-decoration-color: #5CF2F2
+
+}
+
+
+
+.sobre-mi .sobre-contenedor{  
+  width: 80%;
+  display: flex; /*Flexbox*/
+  flex-direction: row; /*para que se pongan en fila*/
+  justify-content: space-between; /*enviar los elementos del div a los extremos*/
+  align-items: center; /*Centrar verticalmente*/
+  margin: 0 auto;
+
+}
+
+.sobre-mi .sobre-contenedor .texto-sobre p{  
+font-size: 13px;
+color: #fff;
+}
+
+.sobre-mi .sobre-contenedor .img{  
+  width: 250px;
+  border-radius: 80%;
+  padding: 25px;
+  margin: 25px;
+  border: 1px solid #5CF2F2;
+  }
+  
+  @media screen and (max-width: 768px) {
+
+    .sobre-mi .sobre-contenedor{  
+      width: 80%;
+      height: auto;
+      display: flex; /*Flexbox*/
+      flex-direction: column;
+      justify-content: space-between; /*enviar los elementos del div a los extremos*/
+      align-items: center; /*Centrar verticalmente*/
+      margin: 0 auto;
+    
+    }
+
+    .sobre-mi {
+
+      width: 100%;
+      height: auto;
+
+    }
+
+    .sobre-mi h2{
+      font-size: 24px;
+  
+  }
+}

@@ -1,0 +1,70 @@
+/******* stack *******/
+
+.stack {
+
+    width: 80%;
+    height: auto;
+    padding: 25px;
+    margin: 0 auto;
+
+}
+
+.stack h2{
+
+    text-align: center;
+    margin: 25px;
+    padding: 25px;
+    text-decoration: underline;
+    text-decoration-color: #5CF2F2;
+
+}
+
+.stack h3{
+    color: #5CF2F2;
+}
+
+.front {
+    max-width: 250px;
+    width: 250px;
+}
+
+.back {
+    max-width: 250px;
+    width: 250px;
+}
+
+.design {
+    max-width: 250px;
+    width: 250px;
+}
+
+
+
+.stack .contenedor-stack{
+    
+    width: 80%;
+    display: flex; /*Flexbox*/
+    flex-direction: row; /*para que se pongan en fila*/
+    justify-content: space-between; /*enviar los elementos del div a los extremos*/
+    align-items: start; /*Centrar verticalmente*/
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .stack .contenedor-stack{
+    flex-direction: row;
+    width: 95%;
+    }
+
+    .stack h3{
+        color: #5CF2F2;
+        font-size: 18px;
+    }
+
+    .stack h2{
+        font-size: 24px;
+    }
+
+
+}

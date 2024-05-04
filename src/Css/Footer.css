@@ -1,0 +1,13 @@
+/******* FOOTER *******/
+
+footer{
+    width: 100%;
+    display: flex; /*Flexbox*/
+    flex-direction: row; /*para que se pongan en fila*/
+    justify-content: center; /*enviar los elementos del div a los extremos*/
+    align-items: start; /*Centrar verticalmente*/
+    margin: 0 auto;
+    padding: 30PX;
+    background-color: #070c16;
+
+}

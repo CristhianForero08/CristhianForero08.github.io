@@ -1,0 +1,47 @@
+/******* contacto *******/
+
+.contacto {
+
+    width: 80%;
+    height: 600px;
+    padding: 25px;
+    margin: 0 auto;
+    display: flex; /*Flexbox*/
+    flex-direction: column; /*para que se pongan en fila*/
+    justify-content: center; /*enviar los elementos del div a los extremos*/
+    
+    margin: 0 auto;
+
+}
+
+
+.contacto h2{
+    text-align: center;
+    margin: 25px;
+    padding: 25px;
+    text-decoration: underline;
+    text-decoration-color: #5CF2F2
+
+}
+
+.contacto .contenedor-contacto{
+    
+    
+    text-align: center;
+    margin: 0 auto;
+    display: flex; /*Flexbox*/
+    flex-direction: column; /*para que se pongan en fila*/
+    justify-content: center; /*enviar los elementos del div a los extremos*/
+    
+    margin: 0 auto;
+
+
+}
+
+@media only screen and (max-width: 768px) {
+    .contacto h2{
+        font-size: 26px;
+    
+    }
+
+}

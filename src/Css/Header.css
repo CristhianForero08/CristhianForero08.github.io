@@ -1,0 +1,117 @@
+/***** HEADER ******/
+
+header {
+  width: 80%;
+  padding: 50px 0;
+  display: flex; /*Flexbox para el menu*/
+  flex-direction: row; /*para que se pongan en fila*/
+  justify-content: space-between; /*enviar los elementos del div a los extremos*/
+  align-items: center; /*Centrar verticalmente*/
+  margin: 0 auto;
+}
+
+
+header .menu a {
+  color: #a9adb8;
+  text-decoration: none;
+  margin-right: 30px;
+  font-size: 16px;
+  transition: all 1s ease;
+}
+header .menu a:hover {
+  text-decoration: underline;
+  color: #5CF2F2;
+}  
+
+header .menu a:active {
+  text-decoration: underline;
+  color: #5CF2F2;
+} 
+
+header .logo a {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 32px;
+  text-decoration: none;
+  transition: all 1s ease;
+}
+
+header .logo a:hover {
+  text-decoration: none;
+  color: #5CF2F2;
+}
+
+.menu {
+  display: flex; /* Asegura que el menú esté en fila por defecto */
+  justify-content: center; /* Coloca el menú en el extremo derecho */
+}
+
+.menu nav {
+  display: flex; /* Asegura que los elementos del menú estén en fila por defecto */
+  flex-direction: row; /* Cambia la dirección a columna para dispositivos móviles */
+  align-items: flex-end; /* Alinea los elementos a la derecha */
+}
+
+.menu a {
+  margin-right: 0; /* Elimina el margen derecho para que los elementos estén bien alineados */
+}
+
+.hamburger-menu {
+  display: none; /* Oculta el ícono de hamburguesa por defecto */
+}
+
+@media only screen and (max-width: 768px) {
+  .menu {
+    display: none; /* Oculta el menú por defecto en dispositivos móviles */
+    flex-direction: column; /* Cambia la dirección del menú a columna */
+    position: absolute;
+    top: 80px; /* Ajusta la posición del menú desplegable */
+    right: 0; /* Coloca el menú en el extremo derecho */
+    background-color: #000000dc; /* Cambia el color de fondo */
+    width: 30%;
+    z-index: 1;
+    border-radius: 20%;
+  }
+
+  .menu nav {
+    
+    flex-direction: column; /* Cambia la dirección a columna para dispositivos móviles */
+    
+  }
+
+  .menu.open {
+    display: flex; /* Muestra el menú cuando está abierto */
+  }
+
+  .hamburger-menu {
+    display: block; /* Muestra el ícono de hamburguesa en dispositivos móviles */
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+
+  .bar:hover {
+    
+    background-color: #5CF2F2;
+    
+  }
+
+  .open .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+
+  .open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .open .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+}

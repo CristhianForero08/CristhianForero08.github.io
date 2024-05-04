@@ -1,0 +1,42 @@
+.progress-bar-container h3 {
+    font-size: 20px;
+    padding-top: 25px;
+    color: #fff;
+
+}
+
+.progress-bar-container {
+    width: 100%; /* Adjust width as needed */
+    height: 3px; /* Adjust height as needed */
+       
+    margin-bottom: 75px; /* Spacing below the bar */
+  }
+  
+  .progress-bar {
+    height: 100%; /* Height of the progress bar */
+    background-color: #5CF2F2; /* Fill color of the progress bar */
+    transition: width 0.5s ease; 
+    border-radius: 20%;
+    
+  }
+  
+  .progress-text {
+    display: block; /* Ensure text is on its own line */
+    text-align: justify; /* Center the text within the bar */
+    line-height: 30px; /* Align text vertically within the bar */
+    color: #fff; /* Text color */
+  }
+
+  @media only screen and (max-width: 768px) {
+
+    .progress-bar-container h3 {
+      font-size: 12px;      
+      color: #fff
+    }
+
+    .progress-text {
+      font-size: 12px;
+    }
+
+
+}

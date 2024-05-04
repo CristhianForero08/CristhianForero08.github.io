@@ -1,0 +1,102 @@
+  /************** INICIO **************/
+  .slider {
+    height: 80vh; /* Cambiado de 100vh a auto para que se ajuste a su contenido */
+    width: 80%;
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Cambiado de wrap a column para mostrar cada elemento en una fila independiente */
+    justify-content: center;
+    align-items: center; /* Centrar verticalmente */
+    margin: 0 auto;
+    padding-bottom: 25px;
+}
+
+.redes-principal {
+    display: flex; /* Flexbox */
+    list-style: none; /* Eliminar los puntos de lista */
+    padding: 0;
+}
+
+.redes-principal .lis {
+    margin: 0 10px; /* Espacio entre los íconos */
+    font-size: 20px;
+    color: #5CF2F2;
+    border: 1px solid #5CF2F2;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 1s ease;
+    
+}
+
+.redes-principal .lis:hover {
+  margin: 0 10px; /* Espacio entre los íconos */
+  font-size: 20px;
+  color: #0a101e;
+  border: 1px solid #5CF2F2;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #5CF2F2;
+  box-shadow: 0px 1px 4px #5CF2F2;
+}
+
+.titulo-principal {
+  font-size: 80px;
+  text-align: center;    
+}
+
+.profesion{
+  font-size: 30px;
+  text-align: center;
+  margin: 15px;
+  font-weight: 200;
+  color: #5CF2F2;
+}
+
+.intro{
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  margin: 15px;
+  max-width: 80%;
+}
+
+.astronaut-animation{
+  max-width: 280px;
+  height: auto;
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .titulo-principal {
+    font-size: 55px;
+    text-align: center;    
+  }
+
+  .profesion{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 22px;
+  }
+
+  .intro{
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    
+  }
+
+  .astronaut-animation{
+    max-width: 220px;
+    height: auto;
+  
+  }
+
+  .slider {
+    padding-bottom: 45px;
+}
+
+}
+
+
+

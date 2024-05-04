@@ -1,0 +1,33 @@
+.particles {
+    position: absolute;
+    width: 80%;
+
+  }
+  
+  .particle {
+    position: fixed;
+    width: 90%;
+    background-color: #5CF2F2;  /*Color de las partículas */
+    border: #5CF2F2;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(2, 196, 255, 0.699); /* Efecto de sombra */
+    animation: moveParticle linear infinite; /* Animación lineal y continua */
+  }
+  
+  @keyframes moveParticle {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(0, 0) scale(1.1); /* Escala ligeramente la partícula */
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+
+
+
+}
