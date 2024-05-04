@@ -36,7 +36,7 @@ const Slider = () => {
                       <a href="http://www.linkedin.com/in/cristhianforero" target='_blank'><i className="fa-brands fa-linkedin lis"></i></a>
                       <a href="https://github.com/CristhianForero08" target='_blank'><i className="fa-brands fa-github lis"></i></a>
                       <a href="https://www.instagram.com/ing_cristhian_forero/" target='_blank'><i className="fa-brands fa-square-instagram lis"></i></a>
-                      <a href="https://cristhianforero.com/" target='_blank'><i className="fa-solid fa-globe lis"></i></a>
+                      <a href="https://neogyck.com/" target='_blank'><i className="fa-solid fa-globe lis"></i></a>
                       
                       
                     </ul>
