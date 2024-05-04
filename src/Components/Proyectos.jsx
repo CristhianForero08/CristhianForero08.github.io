@@ -13,10 +13,7 @@ const Proyectos = () => {
 
         <div className='contenedor-links'>
           <Links tecnologias="Javascript, HTML, CSS" texto="https://generator-password-mocha.vercel.app/" nombreProyecto="Generador de contraseñas seguras"/>
-          <Links tecnologias="Javascript, HTML, CSS" texto="https://generator-password-mocha.vercel.app/" nombreProyecto="Generador de contraseñas seguras"/>
-          <Links tecnologias="Javascript, HTML, CSS" texto="https://generator-password-mocha.vercel.app/" nombreProyecto="Generador de contraseñas seguras"/>
-          <Links tecnologias="Javascript, HTML, CSS" texto="https://generator-password-mocha.vercel.app/" nombreProyecto="Generador de contraseñas seguras"/>
-        </div>
+          </div>
 
         
         </div>
