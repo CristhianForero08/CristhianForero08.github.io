@@ -1,8 +1,12 @@
-# React + Vite
+# cristhianforero08.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio personal de **Cristhian Forero**: Data & BI · Growth & CRM · Ciberseguridad.
 
-Currently, two official plugins are available:
+Sitio estático (sin build), publicado con GitHub Pages desde la raíz de `main`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `index.html`: estructura y contenido (español por defecto)
+- `js/i18n.js`: textos ES / EN
+- `js/main.js`: animaciones con GSAP 3.13 (ScrollTrigger, SplitText, ScrambleText) y scroll suave con Lenis
+- `css/style.css`: estilos
+
+Para verlo en local: `python -m http.server 8080` y abrir http://localhost:8080

@@ -1,15 +1,317 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    
-    <link rel="shortcut icon" href="./src/assets/img/ico.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/a596bc2027.js" crossorigin="anonymous"></script>
-    <title>Ing Cristhian Forero</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cristhian Forero — Data · Growth · Security</title>
+  <meta name="description" content="Ingeniero de Software en Bogotá. Inteligencia de negocios, growth y automatización de marketing, con enfoque en ciberseguridad." />
+  <meta name="theme-color" content="#07090c" />
+  <meta property="og:title" content="Cristhian Forero — Data · Growth · Security" />
+  <meta property="og:description" content="Convierto datos en decisiones, decisiones en crecimiento, y lo protejo." />
+  <meta property="og:image" content="https://cristhianforero08.github.io/assets/img/cristhian.webp" />
+  <meta property="og:url" content="https://cristhianforero08.github.io/" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ========== PRELOADER ========== -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__log" id="loaderLog"></div>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
+    <div class="loader__pct" id="loaderPct">000</div>
+  </div>
+
+  <canvas class="grid-bg" id="gridBg" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"></span>
+    <span class="cursor__label" id="cursorLabel">x:0000 y:0000</span>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" data-scroll>CF<span class="blink">_</span></a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#about" data-scroll><i>01</i><span data-i18n="nav.about">perfil</span></a>
+      <a href="#stack" data-scroll><i>02</i><span data-i18n="nav.stack">stack</span></a>
+      <a href="#growth" data-scroll><i>03</i><span data-i18n="nav.growth">growth</span></a>
+      <a href="#xp" data-scroll><i>04</i><span data-i18n="nav.xp">experiencia</span></a>
+      <a href="#security" data-scroll><i>05</i><span data-i18n="nav.sec">seguridad</span></a>
+      <a href="#contact" data-scroll><i>06</i><span data-i18n="nav.contact">contacto</span></a>
+    </nav>
+    <button class="lang" id="langToggle" aria-label="Cambiar idioma / Switch language">
+      <span data-lang="es">ES</span><span class="lang__sep">/</span><span data-lang="en">EN</span>
+    </button>
+    <div class="nav__progress"><span id="progress"></span></div>
+  </header>
+
+  <main id="top">
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="hero__prompt"><span class="c-lime">~/bogota</span> <span class="c-dim">$</span> whoami</p>
+          <h1 class="hero__name" id="heroName" aria-label="Cristhian Forero">
+            <span class="hero__line">CRISTHIAN</span>
+            <span class="hero__line hero__line--outline">FORERO</span>
+          </h1>
+          <p class="hero__role">
+            <span class="c-dim">&gt;</span> <span id="heroRole">Data &amp; BI Engineer</span><span class="caret"></span>
+          </p>
+          <p class="hero__sub" data-i18n-html="hero.sub">Ingeniero de Software. Convierto <em class="c-cyan">datos</em> en decisiones, decisiones en <em class="c-lime">crecimiento</em>, y lo <em class="c-red">protejo</em>.</p>
+          <div class="hero__meta">
+            <span class="status"><span class="status__dot"></span><span data-i18n="hero.status">Abierto a nuevas oportunidades</span></span>
+            <span class="c-dim">Bogotá, CO · <span id="clock">--:--</span> COT</span>
+          </div>
+        </div>
+        <figure class="hero__photo" id="heroPhoto">
+          <div class="photo-frame">
+            <img src="assets/img/cristhian.webp" alt="Foto de Cristhian Forero" width="468" height="575" />
+            <span class="scanline"></span>
+            <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          </div>
+          <figcaption class="c-dim">IMG_0001 · subject: c.forero · match 99.8%</figcaption>
+        </figure>
+      </div>
+
+      <ul class="kpis" id="kpis">
+        <li><b data-count="7" data-suffix="+">0</b><span data-i18n="kpi.years">años de experiencia</span></li>
+        <li><b data-count="5">0</b><span data-i18n="kpi.brands">marcas impactadas</span></li>
+        <li><b data-count="3">0</b><span data-i18n="kpi.countries">países · CO · MX · PE</span></li>
+        <li><b data-count="3">0</b><span data-i18n="kpi.fronts">frentes: data, growth, security</span></li>
+      </ul>
+
+      <a href="#about" class="scroll-hint" data-scroll><span data-i18n="hero.scroll">scroll para ejecutar</span> <span class="scroll-hint__arrow">↓</span></a>
+    </section>
+
+    <!-- ========== MARQUEE ========== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <span>POWER BI</span><i>◆</i><span>PYTHON</span><i>◆</i><span>SALESFORCE</span><i>◆</i><span>A/B TESTING</span><i>◆</i><span>CRO</span><i>◆</i><span>PUSH · EMAIL · SMS</span><i>◆</i><span>SEGMENTACIÓN</span><i>◆</i><span>GOOGLE ANALYTICS</span><i>◆</i><span>KALI LINUX</span><i>◆</i><span>BURP SUITE</span><i>◆</i><span>AWS</span><i>◆</i>
+      </div>
+    </div>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section about" id="about">
+      <p class="section__label">01 — about.md</p>
+      <p class="about__text" id="aboutText" data-i18n="about.text">Llevo más de 7 años trabajando donde se cruzan el negocio y la tecnología. Diseño automatizaciones de marketing que llegan a clientes por Push, Email y SMS, construyo segmentaciones con datos de comportamiento y transaccionales, y llevo las ideas de growth hasta el código. Hoy lo hago en Falabella. Mañana, donde haya un problema difícil que valga la pena medir.</p>
+      <div class="about__chips">
+        <span class="chip">Falabella</span><span class="chip">Dentsu Creative</span><span class="chip">Johnson &amp; Johnson MX</span><span class="chip">Colsubsidio</span><span class="chip">Bodytech CO · PE</span><span class="chip">Rhenus Logistics</span>
+      </div>
+    </section>
+
+    <!-- ========== STACK ========== -->
+    <section class="section stack" id="stack">
+      <p class="section__label">02 — stack.json</p>
+      <h2 class="section__title" data-split data-i18n="stack.title">Tres frentes, un mismo objetivo</h2>
+      <p class="section__intro" data-i18n="stack.intro">Datos para entender, growth para mover la aguja, seguridad para que nada se rompa en el camino.</p>
+
+      <div class="cards">
+        <article class="card" style="--accent: var(--cyan)">
+          <header><span class="card__idx">[0]</span><span class="card__key">"data_bi"</span></header>
+          <h3 data-i18n="stack.data.t">Data &amp; BI</h3>
+          <p data-i18n="stack.data.d">Modelos de datos para campañas, segmentación avanzada de audiencias con variables de comportamiento y transacciones, dashboards y herramientas de análisis para decisiones críticas.</p>
+          <ul class="tags"><li>Power BI</li><li>Python</li><li>Google Analytics</li><li data-i18n="tag.scraping">Web scraping</li><li data-i18n="tag.modeling">Modelado de datos</li></ul>
+          <span class="card__glow"></span>
+        </article>
+        <article class="card" style="--accent: var(--lime)">
+          <header><span class="card__idx">[1]</span><span class="card__key">"growth_crm"</span></header>
+          <h3 data-i18n="stack.growth.t">Growth &amp; CRM</h3>
+          <p data-i18n="stack.growth.d">Automatización de marketing multicanal, embudos de activación, retención y venta, experimentación A/B, SEO/SEM y optimización de la conversión (CRO).</p>
+          <ul class="tags"><li>Salesforce</li><li>Mailchimp</li><li>Google Ads</li><li>SEMrush</li><li>Convert A/B</li><li>GSC</li></ul>
+          <span class="card__glow"></span>
+        </article>
+        <article class="card" style="--accent: var(--red)">
+          <header><span class="card__idx">[2]</span><span class="card__key">"security"</span></header>
+          <h3 data-i18n="stack.sec.t">Ciberseguridad</h3>
+          <p data-i18n="stack.sec.d">Hacking ético, respuesta a incidentes y análisis de malware, además de experiencia administrando entornos AWS con foco en protección de datos y continuidad del negocio.</p>
+          <ul class="tags"><li>Kali Linux</li><li>Nmap</li><li>Metasploit</li><li>Wireshark</li><li>Burp Suite</li><li>Hydra</li></ul>
+          <span class="card__glow"></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== GROWTH LOOP ========== -->
+    <section class="section growth" id="growth">
+      <p class="section__label">03 — growth.loop</p>
+      <h2 class="section__title" data-split data-i18n="growth.title">Cómo pienso el crecimiento</h2>
+      <p class="section__intro" data-i18n="growth.intro">Cada etapa del embudo es una hipótesis que se mide. Este es el ciclo que he aplicado en retail, salud, fitness y logística.</p>
+
+      <div class="loop" id="loop">
+        <svg class="loop__svg" viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="loopGrad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#4de1ff" />
+              <stop offset="55%" stop-color="#c6ff3d" />
+              <stop offset="100%" stop-color="#ff4d6d" />
+            </linearGradient>
+          </defs>
+          <path class="loop__base" d="M 125 110 C 230 10, 270 10, 375 110 S 520 210, 625 110 S 770 10, 875 110" />
+          <path class="loop__path" id="loopPath" d="M 125 110 C 230 10, 270 10, 375 110 S 520 210, 625 110 S 770 10, 875 110" />
+          <circle class="loop__node" cx="125" cy="110" r="9" />
+          <circle class="loop__node" cx="375" cy="110" r="9" />
+          <circle class="loop__node" cx="625" cy="110" r="9" />
+          <circle class="loop__node" cx="875" cy="110" r="9" />
+        </svg>
+        <ol class="loop__steps">
+          <li class="step"><span class="step__n">01</span><h3 data-i18n="growth.s1.t">Adquirir</h3><p data-i18n="growth.s1.d">SEO/SEM, análisis de competencia en marketplaces y scraping de datos del mercado.</p></li>
+          <li class="step"><span class="step__n">02</span><h3 data-i18n="growth.s2.t">Activar</h3><p data-i18n="growth.s2.d">Embudos de activación, auditorías UX/UI y experimentos A/B en web y app.</p></li>
+          <li class="step"><span class="step__n">03</span><h3 data-i18n="growth.s3.t">Retener</h3><p data-i18n="growth.s3.d">Flujos automatizados de Push, Email y SMS según el comportamiento de cada segmento.</p></li>
+          <li class="step"><span class="step__n">04</span><h3 data-i18n="growth.s4.t">Monetizar</h3><p data-i18n="growth.s4.d">CRO, integración BI + CRM y lectura de resultados para decidir la siguiente iteración.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== EXPERIENCE (horizontal) ========== -->
+    <section class="xp" id="xp">
+      <div class="xp__head">
+        <p class="section__label">04 — git log --experience</p>
+        <h2 class="section__title" data-split data-i18n="xp.title">Historial de commits</h2>
+        <p class="xp__hint c-dim" data-i18n="xp.hint">→ sigue haciendo scroll</p>
+      </div>
+      <div class="xp__viewport">
+        <div class="xp__track" id="xpTrack">
+          <article class="commit" style="--accent: var(--cyan)">
+            <p class="commit__hash"><span class="c-lime">commit</span> 9f3a2c1 <span class="commit__head">(HEAD → main)</span></p>
+            <p class="commit__date" data-i18n="xp.1.date">abr 2025 — hoy</p>
+            <h3 data-i18n="xp.1.role">Ingeniero en Inteligencia de Negocios</h3>
+            <p class="commit__co">Falabella</p>
+            <ul data-i18n-html="xp.1.b">
+              <li>Liderazgo técnico en flujos de automatización inteligente para marketing directo (Push, Email, SMS), con foco en conversión y retención.</li>
+              <li>Sistemas de segmentación avanzada con variables de comportamiento y datos transaccionales.</li>
+              <li>Integración de BI y CRM para optimizar campañas multicanal basadas en modelos de datos.</li>
+            </ul>
+          </article>
+          <article class="commit" style="--accent: var(--lime)">
+            <p class="commit__hash"><span class="c-lime">commit</span> 6b81e07</p>
+            <p class="commit__date" data-i18n="xp.2.date">feb 2023 — oct 2023</p>
+            <h3>Growth Hacker</h3>
+            <p class="commit__co">Dentsu Creative</p>
+            <ul data-i18n-html="xp.2.b">
+              <li><b>Johnson &amp; Johnson MX:</b> análisis de competencia en marketplaces de LATAM y herramientas de web scraping.</li>
+              <li><b>Colsubsidio:</b> estrategias de crecimiento para la app móvil, análisis de audiencia y experimentos A/B.</li>
+              <li><b>Bodytech CO · PE:</b> automatización de marketing, embudos de activación, retención y venta, y auditorías SEO y UX/UI.</li>
+            </ul>
+          </article>
+          <article class="commit" style="--accent: var(--lime)">
+            <p class="commit__hash"><span class="c-lime">commit</span> 2d4c9aa</p>
+            <p class="commit__date" data-i18n="xp.3.date">may 2020 — nov 2022</p>
+            <h3>Growth Marketing</h3>
+            <p class="commit__co">Rhenus Logistics</p>
+            <ul data-i18n-html="xp.3.b">
+              <li>Automatización de marketing e integraciones con Salesforce para mejorar la conversión.</li>
+              <li>Herramientas de análisis de datos para decisiones críticas.</li>
+              <li>Administración de entornos AWS y estrategias de seguridad para proteger los datos y la continuidad del negocio.</li>
+            </ul>
+          </article>
+          <article class="commit" style="--accent: var(--violet)">
+            <p class="commit__hash"><span class="c-lime">commit</span> 0a17f5e <span class="commit__head commit__head--init">(init)</span></p>
+            <p class="commit__date" data-i18n="xp.4.date">mar 2017 — may 2020</p>
+            <h3 data-i18n="xp.4.role">Profesional de Marketing</h3>
+            <p class="commit__co">Rhenus Logistics</p>
+            <ul data-i18n-html="xp.4.b">
+              <li>Estrategias de marketing digital que mejoraron las tasas de conversión.</li>
+              <li>Proyectos web que optimizaron el SEO y la experiencia de usuario (UX/UI).</li>
+              <li>Identidad visual y posicionamiento de marca.</li>
+            </ul>
+          </article>
+          <div class="xp__end">
+            <p class="c-dim">$ git checkout -b</p>
+            <p class="xp__next" data-i18n="xp.next">¿tu-empresa?</p>
+            <a href="#contact" class="btn" data-scroll data-i18n="xp.cta">Hablemos →</a>
+          </div>
+        </div>
+        <div class="xp__bar"><span id="xpBar"></span></div>
+      </div>
+    </section>
+
+    <!-- ========== SECURITY ========== -->
+    <section class="section security" id="security">
+      <p class="section__label">05 — security.scan</p>
+      <div class="security__grid">
+        <div>
+          <h2 class="section__title" data-split data-i18n="sec.title">El tercer frente: ciberseguridad</h2>
+          <p class="security__p" data-i18n="sec.p1">Me formé en hacking ético y respuesta a incidentes, y ya había administrado entornos AWS con políticas de seguridad. Ahora quiero llevar mi experiencia en datos al terreno de la seguridad.</p>
+          <p class="security__p" data-i18n-html="sec.p2">Me interesan los roles donde se cruzan los dos mundos: <b class="c-red">detección de fraude</b>, <b class="c-red">automatización de seguridad</b> y <b class="c-red">analítica de amenazas</b>.</p>
+        </div>
+        <div class="terminal" id="terminal">
+          <div class="terminal__bar"><span></span><span></span><span></span><p>kali@cforero: ~</p></div>
+          <pre class="terminal__body" id="termBody"><span class="t"><span class="c-red">┌──(kali㉿cforero)-[~]</span></span>
+<span class="t"><span class="c-red">└─$</span> nmap -sV --script=skills cristhian.forero</span>
+<span class="t c-dim">Starting Nmap 7.95 ( https://nmap.org )</span>
+<span class="t c-dim">Host is up (0.0019s latency).</span>
+<span class="t"> </span>
+<span class="t"><b>PORT      STATE  SERVICE</b></span>
+<span class="t">22/tcp    <span class="c-lime">open</span>   kali-linux</span>
+<span class="t">53/tcp    <span class="c-lime">open</span>   nmap / recon</span>
+<span class="t">80/tcp    <span class="c-lime">open</span>   burp-suite · web-sec</span>
+<span class="t">443/tcp   <span class="c-lime">open</span>   ethical-hacking <span class="c-dim">[EHCA 2024]</span></span>
+<span class="t">445/tcp   <span class="c-lime">open</span>   metasploit-framework</span>
+<span class="t">3389/tcp  <span class="c-lime">open</span>   incident-response <span class="c-dim">[2024]</span></span>
+<span class="t">8080/tcp  <span class="c-lime">open</span>   wireshark · traffic-analysis</span>
+<span class="t">9200/tcp  <span class="c-lime">open</span>   malware-analysis</span>
+<span class="t"> </span>
+<span class="t c-cyan">Service detection performed. 8 services up.</span>
+<span class="t"><span class="c-red">└─$</span> <span class="caret"></span></span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EDUCATION ========== -->
+    <section class="section edu" id="edu">
+      <p class="section__label">06 — SELECT * FROM education ORDER BY year DESC;</p>
+      <h2 class="section__title" data-split data-i18n="edu.title">Formación y certificaciones</h2>
+      <div class="table" role="table">
+        <div class="row row--head" role="row"><span>year</span><span data-i18n="edu.col.name">título</span><span data-i18n="edu.col.org">institución</span><span>type</span></div>
+        <div class="row" role="row"><span>2024</span><span>Ethical Hacking Certified Associate</span><span>—</span><span class="pill pill--red">cert</span></div>
+        <div class="row" role="row"><span>2024</span><span data-i18n="edu.r2">Respuesta ante Incidentes Cibernéticos y Análisis de Malware</span><span>—</span><span class="pill pill--red">cert</span></div>
+        <div class="row" role="row"><span>2024</span><span data-i18n="edu.r3">Diplomado en Hacking Ético</span><span data-i18n="edu.r3o">Universidad de Cataluña</span><span class="pill pill--red">sec</span></div>
+        <div class="row" role="row"><span>2023</span><span data-i18n="edu.r4">Diplomado en Inteligencia Artificial</span><span>Universidad del Rosario</span><span class="pill pill--cyan">ai</span></div>
+        <div class="row" role="row"><span>2023</span><span data-i18n="edu.r5">Certificación Google Analytics</span><span>Google</span><span class="pill pill--cyan">cert</span></div>
+        <div class="row" role="row"><span>2022</span><span data-i18n="edu.r6">Ingeniería de Software</span><span>Politécnico Grancolombiano</span><span class="pill pill--lime">degree</span></div>
+        <div class="row" role="row"><span>2019</span><span data-i18n="edu.r7">Especialización: Marketing y Modelos de Negocio Online</span><span>SENA</span><span class="pill pill--lime">growth</span></div>
+        <div class="row" role="row"><span>2019</span><span data-i18n="edu.r8">Tecnólogo en Producción Multimedia</span><span>SENA</span><span class="pill pill--violet">design</span></div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact" id="contact">
+      <p class="section__label">07 — ./contact.sh</p>
+      <h2 class="contact__title" id="contactTitle">
+        <span class="contact__line" data-i18n="contact.l1">¿Construimos</span>
+        <span class="contact__line contact__line--accent" data-i18n="contact.l2">algo medible?</span>
+      </h2>
+      <p class="contact__sub" data-i18n="contact.sub">Estoy abierto a roles en Data/BI, Growth/CRM y ciberseguridad, en Colombia o remoto.</p>
+      <div class="contact__actions">
+        <a class="btn btn--big magnetic" href="mailto:cristhianforerobello@gmail.com" id="mailBtn">cristhianforerobello@gmail.com</a>
+        <button class="btn btn--ghost magnetic" id="copyBtn" data-i18n="contact.copy">copiar email</button>
+      </div>
+      <ul class="socials">
+        <li><a class="magnetic" href="https://www.linkedin.com/in/cristhianforero" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a class="magnetic" href="https://github.com/CristhianForero08" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year">2026</span> Cristhian Forero</span>
+    <span class="c-dim" data-i18n="footer.made">Hecho a mano con GSAP, ScrollTrigger y café colombiano ☕</span>
+    <a href="#top" data-scroll class="c-dim" data-i18n="footer.top">volver arriba ↑</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>
