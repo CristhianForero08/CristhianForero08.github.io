@@ -47,7 +47,7 @@ window.I18N = {
     "edu.r5": "Certificación Google Analytics",
     "edu.r6": "Ingeniería de Software",
     "contact.l1": "¿Construimos", "contact.l2": "algo medible?",
-    "contact.sub": "Estoy abierto a roles en Data/BI, Growth/CRM y ciberseguridad, en Colombia o remoto.",
+    "contact.sub": "Estoy abierto a roles en Producto, Data/BI, Growth/CRM y ciberseguridad, en Colombia o remoto.",
     "contact.copy": "copiar email", "contact.copied": "Email copiado ✓",
     "footer.made": "Hecho a mano con GSAP, ScrollTrigger y café colombiano ☕",
     "footer.top": "volver arriba ↑"
@@ -99,7 +99,7 @@ window.I18N = {
     "edu.r5": "Google Analytics Certification",
     "edu.r6": "B.Sc. Software Engineering",
     "contact.l1": "Shall we build", "contact.l2": "something measurable?",
-    "contact.sub": "Open to Data/BI, Growth/CRM and cybersecurity roles, in Colombia or remote.",
+    "contact.sub": "Open to Product, Data/BI, Growth/CRM and cybersecurity roles, in Colombia or remote.",
     "contact.copy": "copy email", "contact.copied": "Email copied ✓",
     "footer.made": "Handcrafted with GSAP, ScrollTrigger and Colombian coffee ☕",
     "footer.top": "back to top ↑"
