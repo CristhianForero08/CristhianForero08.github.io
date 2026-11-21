@@ -120,7 +120,12 @@
     .price li { margin: 6px 0; }
 
     .contact { text-align: center; }
-    .contact .mail { font: 600 clamp(20px, 3vw, 28px) var(--display); color: var(--ink); word-break: break-all; }
+    .canales { list-style: none; padding: 0; margin: 8px auto 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 860px; }
+    @media (max-width: 760px) { .canales { grid-template-columns: 1fr; } }
+    .canales li { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; min-width: 0; }
+    .canales span { display: block; font: 600 13px var(--display); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
+    .canales a { font: 600 clamp(17px, 2.2vw, 20px) var(--display); color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+    .canales a:hover { color: var(--violet); }
     .contact .ctas { justify-content: center; margin-top: 22px; }
 
     footer { border-top: 1px solid var(--line); padding-block: 28px calc(28px + env(safe-area-inset-bottom)); font-size: 14px; color: var(--ink-2); }
@@ -251,9 +256,14 @@
         <p class="eyebrow">Contacto</p>
         <h2 id="contacto-titulo">Te mostramos el asistente en 15 minutos.</h2>
         <p class="intro" style="margin-inline:auto">Cuéntanos el nombre de tu clínica y te enviamos una demostración con tus propios tratamientos.</p>
-        <a class="mail" href="mailto:cristhianforerobello@gmail.com?subject=Piloto%20BlablaPay">cristhianforerobello@gmail.com</a>
+        <ul class="canales">
+          <li><span>WhatsApp</span><a href="https://wa.me/573228168699?text=Hola%2C%20quiero%20conocer%20BlablaPay%20para%20mi%20cl%C3%ADnica" target="_blank" rel="noopener">+57 322 816 8699</a></li>
+          <li><span>Correo</span><a href="mailto:blablapayapp@gmail.com?subject=Piloto%20BlablaPay">blablapayapp@gmail.com</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/blablapay/" target="_blank" rel="noopener">@blablapay</a></li>
+        </ul>
         <div class="ctas">
-          <a class="btn btn-primary" href="mailto:cristhianforerobello@gmail.com?subject=Piloto%20BlablaPay">Escribir un correo</a>
+          <a class="btn btn-primary" href="https://wa.me/573228168699?text=Hola%2C%20quiero%20conocer%20BlablaPay%20para%20mi%20cl%C3%ADnica" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:blablapayapp@gmail.com?subject=Piloto%20BlablaPay">Escribir un correo</a>
         </div>
       </div>
     </section>
@@ -262,7 +272,7 @@
   <footer>
     <div class="wrap">
       <span>BlablaPay es un proyecto de Cristhian Forero · Bogotá, Colombia · © 2026</span>
-      <span><a href="../privacidad/">Política de privacidad</a> · <a href="../privacidad/#eliminar-datos">Eliminar mis datos</a></span>
+      <span><a href="https://www.instagram.com/blablapay/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:blablapayapp@gmail.com">blablapayapp@gmail.com</a> · <a href="../privacidad/">Política de privacidad</a> · <a href="../privacidad/#eliminar-datos">Eliminar mis datos</a></span>
     </div>
   </footer>
 </body>
