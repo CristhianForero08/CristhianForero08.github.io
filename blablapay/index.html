@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>BlablaPay — Asistente de WhatsApp para clínicas</title>
+  <meta name="description" content="BlablaPay atiende el WhatsApp de tu clínica con inteligencia artificial: responde en menos de un minuto, resuelve dudas y agenda valoraciones con el anticipo pagado." />
+  <meta name="theme-color" content="#f5f7f9" />
+  <meta property="og:title" content="BlablaPay — Asistente de WhatsApp para clínicas" />
+  <meta property="og:description" content="Responde a tus pacientes en menos de un minuto, también de noche, y agenda valoraciones con el anticipo pagado." />
+  <meta property="og:image" content="https://cristhianforero08.github.io/blablapay/assets/blablapay-wordmark.png" />
+  <meta property="og:url" content="https://cristhianforero08.github.io/blablapay/" />
+  <link rel="icon" href="assets/blablapay-icono.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Marca tomada del logo: burbuja verde (WhatsApp), burbuja violeta (IA), moneda (pago) y destellos dorados. */
+    :root {
+      --bg: #f5f7f9;
+      --surface: #ffffff;
+      --ink: #1e2063;
+      --ink-2: #4a4f7a;
+      --line: #e3e6ee;
+      --green: #23c56c;
+      --green-dark: #128a4a;
+      --green-soft: #e3f8ec;
+      --violet: #7c4dff;
+      --violet-soft: #efe9ff;
+      --gold: #f2b324;
+      --chat: #efeae2;
+      --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+      --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+      --radius: 18px;
+      color-scheme: light;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--violet); }
+    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(18px, env(safe-area-inset-left)); padding-right: max(18px, env(safe-area-inset-right)); }
+
+    /* Encabezado */
+    header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+    .bar img { height: 40px; width: auto; }
+    nav { display: flex; align-items: center; gap: 22px; font-weight: 700; font-size: 15px; }
+    nav a { color: var(--ink-2); text-decoration: none; }
+    nav a:hover { color: var(--ink); }
+    @media (max-width: 760px) { nav .link { display: none; } .bar img { height: 32px; } }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font: 700 16px var(--body); text-decoration: none; border: 2px solid transparent; transition: transform .15s; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--green); color: #06331b; }
+    .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+    nav .btn { padding: 8px 16px; font-size: 15px; }
+
+    /* Portada */
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; padding-block: 64px 72px; }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-block: 40px 56px; } }
+    .tag { display: inline-flex; align-items: center; gap: 8px; background: var(--violet-soft); color: var(--violet); font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 999px; }
+    .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
+    .hero h1 { font-size: clamp(36px, 5.4vw, 60px); margin: 18px 0 18px; }
+    .hero h1 em { font-style: normal; color: var(--green-dark); }
+    .hero p.lead { font-size: 19px; color: var(--ink-2); max-width: 54ch; margin: 0 0 28px; }
+    .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Teléfono con conversación de ejemplo */
+    .phone { justify-self: center; width: min(360px, 100%); background: var(--ink); border-radius: 36px; padding: 12px; box-shadow: 0 30px 60px -30px rgba(30, 32, 99, .55); }
+    .screen { background: var(--chat); border-radius: 26px; overflow: hidden; }
+    .chat-top { display: flex; align-items: center; gap: 10px; background: #0b6b4f; color: #fff; padding: 12px 14px; }
+    .chat-top .avatar { width: 34px; height: 34px; border-radius: 50%; background: #fff url("assets/blablapay-icono.png") center/80% no-repeat; flex: none; }
+    .chat-top b { font-size: 15px; display: block; line-height: 1.2; }
+    .chat-top small { font-size: 12px; opacity: .85; }
+    .msgs { padding: 14px 12px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; line-height: 1.4; }
+    .msg { max-width: 84%; padding: 8px 10px 6px; border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.08); }
+    .msg time { display: block; text-align: right; font-size: 11px; color: #667781; margin-top: 2px; }
+    .in { background: #fff; align-self: flex-start; border-top-left-radius: 2px; }
+    .out { background: #d9fdd3; align-self: flex-end; border-top-right-radius: 2px; }
+    .msg .link { color: #027eb5; word-break: break-all; }
+    .sample { text-align: center; font-size: 13px; color: var(--ink-2); margin-top: 12px; }
+
+    /* Secciones */
+    section { padding-block: 72px; }
+    section.alt { background: var(--surface); border-block: 1px solid var(--line); }
+    .eyebrow { font: 600 14px var(--display); color: var(--violet); letter-spacing: .08em; text-transform: uppercase; }
+    section h2 { font-size: clamp(30px, 4vw, 42px); margin: 8px 0 14px; }
+    .intro { color: var(--ink-2); max-width: 62ch; margin: 0 0 36px; font-size: 18px; }
+
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 860px) { .grid3 { grid-template-columns: 1fr; } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+    section.alt .card { background: var(--bg); }
+    .card h3 { font-size: 21px; margin: 12px 0 8px; }
+    .card p { margin: 0; color: var(--ink-2); }
+    .step { font: 600 15px var(--display); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-dark); }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+    .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .list li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+    .list li::before { content: ""; width: 22px; height: 22px; margin-top: 3px; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306331b' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat; }
+    .list.no li::before { background: #ffe1e1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b42318' stroke-width='3.2' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center/12px no-repeat; }
+    .list b { display: block; }
+    .list span { color: var(--ink-2); }
+
+    .pilot { background: var(--ink); color: #fff; border-radius: 28px; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; position: relative; overflow: hidden; }
+    @media (max-width: 860px) { .pilot { grid-template-columns: 1fr; } }
+    .pilot h2 { color: #fff; }
+    .pilot .eyebrow { color: var(--gold); }
+    .pilot p { color: #d5d7f2; margin: 0 0 12px; }
+    .price { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); padding: 24px; }
+    .price .big { font: 600 40px/1 var(--display); color: var(--green); }
+    .price ul { margin: 16px 0 22px; padding-left: 20px; color: #e7e8fb; }
+    .price li { margin: 6px 0; }
+
+    .contact { text-align: center; }
+    .contact .mail { font: 600 clamp(20px, 3vw, 28px) var(--display); color: var(--ink); word-break: break-all; }
+    .contact .ctas { justify-content: center; margin-top: 22px; }
+
+    footer { border-top: 1px solid var(--line); padding-block: 28px calc(28px + env(safe-area-inset-bottom)); font-size: 14px; color: var(--ink-2); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <a href="#inicio" aria-label="BlablaPay, inicio"><img src="assets/blablapay-wordmark.png" alt="BlablaPay" width="1080" height="257" /></a>
+      <nav aria-label="Principal">
+        <a class="link" href="#como-funciona">Cómo funciona</a>
+        <a class="link" href="#piloto">Piloto</a>
+        <a class="btn btn-primary" href="#contacto">Hablemos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <div class="wrap hero">
+      <div>
+        <span class="tag">Asistente con IA para clínicas · Bogotá</span>
+        <h1>Tu clínica responde en WhatsApp en <em>menos de un minuto</em>, también de noche.</h1>
+        <p class="lead">BlablaPay atiende a las personas que escriben al WhatsApp de tu clínica, resuelve sus dudas con tu información y agenda la valoración con el anticipo ya pagado. Los casos que necesitan a alguien de tu equipo, te los pasa.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#contacto">Quiero el piloto</a>
+          <a class="btn btn-ghost" href="#como-funciona">Ver cómo funciona</a>
+        </div>
+      </div>
+
+      <figure style="margin:0">
+        <div class="phone" role="img" aria-label="Conversación de ejemplo en WhatsApp entre una paciente y el asistente de una clínica">
+          <div class="screen">
+            <div class="chat-top"><span class="avatar" aria-hidden="true"></span><span><b>Clínica de ejemplo</b><small>asistente virtual</small></span></div>
+            <div class="msgs" aria-hidden="true">
+              <div class="msg out">Hola, ¿cuánto cuesta el diseño de sonrisa?<time>10:41 p. m.</time></div>
+              <div class="msg in">¡Buenas noches! El diseño de sonrisa en resina cuesta <b>desde $1.500.000</b>. El valor final se define en la valoración. ¿Le gustaría agendarla?<time>10:41 p. m.</time></div>
+              <div class="msg out">Sí, ¿tienen algo mañana en la mañana?<time>10:42 p. m.</time></div>
+              <div class="msg in">Mañana tengo 8:00, 9:30 u 11:00 a. m. ¿Cuál le queda mejor?<time>10:42 p. m.</time></div>
+              <div class="msg out">9:30. Soy Laura Martínez.<time>10:43 p. m.</time></div>
+              <div class="msg in">Listo, Laura. Para confirmar, pague el anticipo de $80.000 aquí: <span class="link">pago.clinica.co/valoracion</span><time>10:43 p. m.</time></div>
+              <div class="msg in">✅ Pago recibido. Su valoración quedó confirmada para mañana a las 9:30 a. m.<time>10:45 p. m.</time></div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="sample">Conversación de ejemplo con datos ficticios.</figcaption>
+      </figure>
+    </div>
+
+    <section class="alt" aria-labelledby="problema">
+      <div class="wrap">
+        <p class="eyebrow">El problema</p>
+        <h2 id="problema">Pagas por cada mensaje que llega, pero no siempre alguien contesta.</h2>
+        <p class="intro">Las clínicas invierten en pauta para que los pacientes escriban por WhatsApp. Lo difícil es responder a tiempo a cada uno.</p>
+        <div class="grid3">
+          <div class="card"><div class="step" aria-hidden="true">1</div><h3>Escriben cuando tu equipo no está</h3><p>Muchas consultas llegan de noche, en fines de semana o mientras tu equipo atiende pacientes en consulta.</p></div>
+          <div class="card"><div class="step" aria-hidden="true">2</div><h3>Siempre las mismas preguntas</h3><p>Precios, financiación, ubicación y horarios. Responderlas a mano quita tiempo para atender a quien ya está en la clínica.</p></div>
+          <div class="card"><div class="step" aria-hidden="true">3</div><h3>Interés que se enfría</h3><p>Quien no recibe respuesta pronto le escribe a otra clínica. Ese mensaje ya lo pagaste en pauta.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" aria-labelledby="como">
+      <div class="wrap">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2 id="como">Listo en pocos días, sin cambiar tu número.</h2>
+        <p class="intro">Trabajamos con tu WhatsApp, tu agenda y tus precios. Tu equipo sigue a cargo de los casos que lo necesitan.</p>
+        <div class="grid3">
+          <div class="card"><div class="step" aria-hidden="true">1</div><h3>Conectamos tu WhatsApp</h3><p>Usamos la plataforma oficial de WhatsApp Business de Meta, sin aplicaciones extrañas ni números nuevos para tus pacientes.</p></div>
+          <div class="card"><div class="step" aria-hidden="true">2</div><h3>Cargamos tu información</h3><p>Tratamientos, precios de referencia, financiación, horarios de valoración y preguntas frecuentes, revisados contigo.</p></div>
+          <div class="card"><div class="step" aria-hidden="true">3</div><h3>El asistente atiende y agenda</h3><p>Responde, agenda la valoración, envía el link de pago y confirma la cita. Lo que necesita a una persona pasa a tu equipo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" aria-labelledby="reglas">
+      <div class="wrap">
+        <p class="eyebrow">Reglas claras</p>
+        <h2 id="reglas">Hace lo que tu recepción haría, y no más.</h2>
+        <p class="intro">El asistente sigue reglas fijas que se pueden revisar. Nada de inventar precios ni de opinar sobre la salud de nadie.</p>
+        <div class="two">
+          <div class="card">
+            <h3 style="margin-top:0">Lo que hace</h3>
+            <ul class="list" style="margin-top:16px">
+              <li><div><b>Responde 24/7 en segundos</b><span>Con el tono de tu clínica y solo con tu información.</span></div></li>
+              <li><div><b>Agenda con horarios reales</b><span>Ofrece los espacios libres de tu agenda, sin dobles reservas.</span></div></li>
+              <li><div><b>Cobra el anticipo</b><span>Envía el link de pago y confirma la cita cuando se aprueba.</span></div></li>
+              <li><div><b>Te pasa los casos</b><span>Si la persona escribe «asesor», tiene una queja o un síntoma, la conversación pasa a tu equipo.</span></div></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Lo que nunca hace</h3>
+            <ul class="list no" style="margin-top:16px">
+              <li><div><b>Diagnosticar ni recomendar tratamientos</b><span>Eso se define en la valoración con tu especialista.</span></div></li>
+              <li><div><b>Inventar precios</b><span>Solo usa los precios de referencia que tú apruebas, siempre como «desde».</span></div></li>
+              <li><div><b>Pedir datos sensibles</b><span>No solicita historia clínica, documentos ni datos de tarjetas por chat.</span></div></li>
+              <li><div><b>Fingir ser una persona</b><span>Se presenta como asistente virtual e informa el tratamiento de datos (Ley 1581).</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="piloto" aria-labelledby="piloto-titulo">
+      <div class="wrap">
+        <div class="pilot">
+          <div>
+            <p class="eyebrow">Piloto de lanzamiento</p>
+            <h2 id="piloto-titulo">30 días para comprobarlo con tus propios pacientes.</h2>
+            <p>Buscamos clínicas de odontología y medicina estética en Bogotá para el primer piloto. Configuramos todo contigo y revisamos juntos los resultados cada semana.</p>
+            <p>Si al final no ves el valor, se apaga y listo.</p>
+          </div>
+          <div class="price">
+            <div class="big">$0 fijo</div>
+            <ul>
+              <li>Sin costo de implementación ni mensualidad durante el piloto.</li>
+              <li>Pagas solo por cada valoración agendada y pagada por el asistente.</li>
+              <li>Reporte semanal: mensajes atendidos, citas y tiempos de respuesta.</li>
+            </ul>
+            <a class="btn btn-primary" href="#contacto">Postular mi clínica</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="alt contact" aria-labelledby="contacto-titulo">
+      <div class="wrap">
+        <p class="eyebrow">Contacto</p>
+        <h2 id="contacto-titulo">Te mostramos el asistente en 15 minutos.</h2>
+        <p class="intro" style="margin-inline:auto">Cuéntanos el nombre de tu clínica y te enviamos una demostración con tus propios tratamientos.</p>
+        <a class="mail" href="mailto:cristhianforerobello@gmail.com?subject=Piloto%20BlablaPay">cristhianforerobello@gmail.com</a>
+        <div class="ctas">
+          <a class="btn btn-primary" href="mailto:cristhianforerobello@gmail.com?subject=Piloto%20BlablaPay">Escribir un correo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>BlablaPay es un proyecto de Cristhian Forero · Bogotá, Colombia · © 2026</span>
+      <span><a href="../privacidad/">Política de privacidad</a> · <a href="../privacidad/#eliminar-datos">Eliminar mis datos</a></span>
+    </div>
+  </footer>
+</body>
+</html>
