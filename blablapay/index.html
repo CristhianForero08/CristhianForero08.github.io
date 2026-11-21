@@ -24,8 +24,10 @@
       --line: #e3e6ee;
       --green: #41dc74;
       --green-dark: #128a4a;
+      --green-ink: #0e7a40; /* verde para texto pequeño (≥4,5:1 sobre bg, surface y green-soft) */
       --green-soft: #e3f8ec;
       --violet: #844cf8;
+      --violet-dark: #7a3ff0; /* violeta para texto pequeño (≥4,5:1 sobre bg, surface y violet-soft) */
       --violet-soft: #efe9ff;
       --chat: #efeae2;
       --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
@@ -38,7 +40,7 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
     img { max-width: 100%; display: block; }
-    a { color: var(--violet); }
+    a { color: var(--violet-dark); }
     a:focus-visible, .btn:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
     h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
     .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(18px, env(safe-area-inset-left)); padding-right: max(18px, env(safe-area-inset-right)); }
@@ -61,7 +63,7 @@
     /* Portada */
     .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; padding-block: 64px 72px; }
     @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-block: 40px 56px; } }
-    .tag { display: inline-flex; align-items: center; gap: 8px; background: var(--violet-soft); color: var(--violet); font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 999px; }
+    .tag { display: inline-flex; align-items: center; gap: 8px; background: var(--violet-soft); color: var(--violet-dark); font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 999px; }
     .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
     .hero h1 { font-size: clamp(36px, 5.4vw, 60px); margin: 18px 0 18px; }
     .hero h1 em { font-style: normal; color: var(--green-dark); }
@@ -86,7 +88,7 @@
     /* Secciones */
     section { padding-block: 72px; }
     section.alt { background: var(--surface); border-block: 1px solid var(--line); }
-    .eyebrow { font: 600 14px var(--display); color: var(--violet); letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow { font: 600 14px var(--display); color: var(--violet-dark); letter-spacing: .08em; text-transform: uppercase; }
     section h2 { font-size: clamp(30px, 4vw, 42px); margin: 8px 0 14px; }
     .intro { color: var(--ink-2); max-width: 62ch; margin: 0 0 36px; font-size: 18px; }
 
@@ -96,7 +98,7 @@
     section.alt .card { background: var(--bg); }
     .card h3 { font-size: 21px; margin: 12px 0 8px; }
     .card p { margin: 0; color: var(--ink-2); }
-    .step { font: 600 15px var(--display); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-dark); }
+    .step { font: 600 15px var(--display); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-ink); }
 
     .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
