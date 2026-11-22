@@ -1,173 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>BlablaPay — Asistente de WhatsApp para clínicas</title>
-  <meta name="description" content="BlablaPay atiende el WhatsApp de tu clínica con inteligencia artificial: responde en menos de un minuto, resuelve dudas y agenda valoraciones con el anticipo pagado." />
+  <title>BlablaPay — Asistente con IA en WhatsApp que atiende, agenda y cobra</title>
+  <meta name="description" content="BlablaPay atiende el WhatsApp de tu negocio con IA: responde en segundos, agenda en tus horarios reales, cobra el anticipo con Wompi y recuerda la cita." />
   <meta name="theme-color" content="#f5f7f9" />
-  <meta property="og:title" content="BlablaPay — Asistente de WhatsApp para clínicas" />
-  <meta property="og:description" content="Responde a tus pacientes en menos de un minuto, también de noche, y agenda valoraciones con el anticipo pagado." />
+  <link rel="canonical" href="https://cristhianforero08.github.io/blablapay/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:title" content="BlablaPay — Tu asistente con IA en WhatsApp que atiende, agenda y cobra" />
+  <meta property="og:description" content="Responde a tus clientes en segundos, también de noche, agenda en tus horarios reales y cobra el anticipo con Wompi." />
   <meta property="og:image" content="https://cristhianforero08.github.io/blablapay/assets/blablapay-wordmark.png" />
   <meta property="og:url" content="https://cristhianforero08.github.io/blablapay/" />
   <link rel="icon" href="assets/blablapay-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* Marca tomada del logo: burbuja verde (WhatsApp), burbuja violeta con destello (IA), moneda (pago) y texto azul tinta. */
-    :root {
-      --bg: #f5f7f9;
-      --surface: #ffffff;
-      --ink: #1f1f53;
-      --ink-2: #4a4f7a;
-      --line: #e3e6ee;
-      --green: #41dc74;
-      --green-dark: #128a4a;
-      --green-ink: #0e7a40; /* verde para texto pequeño (≥4,5:1 sobre bg, surface y green-soft) */
-      --green-soft: #e3f8ec;
-      --violet: #844cf8;
-      --violet-dark: #7a3ff0; /* violeta para texto pequeño (≥4,5:1 sobre bg, surface y violet-soft) */
-      --violet-soft: #efe9ff;
-      --chat: #efeae2;
-      --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
-      --body: "Nunito", "Segoe UI", system-ui, sans-serif;
-      --radius: 18px;
-      color-scheme: light;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-    img { max-width: 100%; display: block; }
-    a { color: var(--violet-dark); }
-    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
-    h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
-    .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(18px, env(safe-area-inset-left)); padding-right: max(18px, env(safe-area-inset-right)); }
-
-    /* Encabezado */
-    header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-    .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
-    .bar img { height: 40px; width: auto; }
-    nav { display: flex; align-items: center; gap: 22px; font-weight: 700; font-size: 15px; }
-    nav a { color: var(--ink-2); text-decoration: none; }
-    nav a:hover { color: var(--ink); }
-    @media (max-width: 760px) { nav .link { display: none; } .bar img { height: 32px; } }
-
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font: 700 16px var(--body); text-decoration: none; border: 2px solid transparent; transition: transform .15s; }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--green); color: #06331b; }
-    .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
-    nav .btn { padding: 8px 16px; font-size: 15px; }
-
-    /* Portada */
-    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; padding-block: 64px 72px; }
-    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-block: 40px 56px; } }
-    .tag { display: inline-flex; align-items: center; gap: 8px; background: var(--violet-soft); color: var(--violet-dark); font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 999px; }
-    .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
-    .hero h1 { font-size: clamp(36px, 5.4vw, 60px); margin: 18px 0 18px; }
-    .hero h1 em { font-style: normal; color: var(--green-dark); }
-    .hero p.lead { font-size: 19px; color: var(--ink-2); max-width: 54ch; margin: 0 0 28px; }
-    .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    /* Teléfono con conversación de ejemplo */
-    .phone { justify-self: center; width: min(360px, 100%); background: var(--ink); border-radius: 36px; padding: 12px; box-shadow: 0 30px 60px -30px rgba(30, 32, 99, .55); }
-    .screen { background: var(--chat); border-radius: 26px; overflow: hidden; }
-    .chat-top { display: flex; align-items: center; gap: 10px; background: #0b6b4f; color: #fff; padding: 12px 14px; }
-    .chat-top .avatar { width: 34px; height: 34px; border-radius: 50%; background: #fff url("assets/blablapay-icono.png") center/80% no-repeat; flex: none; }
-    .chat-top b { font-size: 15px; display: block; line-height: 1.2; }
-    .chat-top small { font-size: 12px; opacity: .85; }
-    .msgs { padding: 14px 12px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; line-height: 1.4; }
-    .msg { max-width: 84%; padding: 8px 10px 6px; border-radius: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.08); }
-    .msg time { display: block; text-align: right; font-size: 11px; color: #667781; margin-top: 2px; }
-    .in { background: #fff; align-self: flex-start; border-top-left-radius: 2px; }
-    .out { background: #d9fdd3; align-self: flex-end; border-top-right-radius: 2px; }
-    .msg .link { color: #027eb5; word-break: break-all; }
-    .sample { text-align: center; font-size: 13px; color: var(--ink-2); margin-top: 12px; }
-
-    /* Secciones */
-    section { padding-block: 72px; }
-    section.alt { background: var(--surface); border-block: 1px solid var(--line); }
-    .eyebrow { font: 600 14px var(--display); color: var(--violet-dark); letter-spacing: .08em; text-transform: uppercase; }
-    section h2 { font-size: clamp(30px, 4vw, 42px); margin: 8px 0 14px; }
-    .intro { color: var(--ink-2); max-width: 62ch; margin: 0 0 36px; font-size: 18px; }
-
-    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 860px) { .grid3 { grid-template-columns: 1fr; } }
-    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
-    section.alt .card { background: var(--bg); }
-    .card h3 { font-size: 21px; margin: 12px 0 8px; }
-    .card p { margin: 0; color: var(--ink-2); }
-    .step { font: 600 15px var(--display); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-ink); }
-
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
-    .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
-    .list li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
-    .list li::before { content: ""; width: 22px; height: 22px; margin-top: 3px; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306331b' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat; }
-    .list.no li::before { background: #ffe1e1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b42318' stroke-width='3.2' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center/12px no-repeat; }
-    .list b { display: block; }
-    .list span { color: var(--ink-2); }
-
-    .pilot { background: var(--ink); color: #fff; border-radius: 28px; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; position: relative; overflow: hidden; }
-    @media (max-width: 860px) { .pilot { grid-template-columns: 1fr; } }
-    .pilot h2 { color: #fff; }
-    .pilot .eyebrow { color: var(--green); }
-    .pilot p { color: #d5d7f2; margin: 0 0 12px; }
-    .price { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); padding: 24px; }
-    .price .big { font: 600 40px/1 var(--display); color: var(--green); }
-    .price ul { margin: 16px 0 22px; padding-left: 20px; color: #e7e8fb; }
-    .price li { margin: 6px 0; }
-
-    .contact { text-align: center; }
-    .canales { list-style: none; padding: 0; margin: 8px auto 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 860px; }
-    @media (max-width: 760px) { .canales { grid-template-columns: 1fr; } }
-    .canales li { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; min-width: 0; }
-    .canales span { display: block; font: 600 13px var(--display); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
-    .canales a { font: 600 clamp(17px, 2.2vw, 20px) var(--display); color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
-    .canales a:hover { color: var(--violet); }
-    .contact .ctas { justify-content: center; margin-top: 22px; }
-
-    footer { border-top: 1px solid var(--line); padding-block: 28px calc(28px + env(safe-area-inset-bottom)); font-size: 14px; color: var(--ink-2); }
-    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-  </style>
+  <link rel="stylesheet" href="assets/blablapay.css" />
 </head>
 <body>
-  <header>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
     <div class="wrap bar">
-      <a href="#inicio" aria-label="BlablaPay, inicio"><img src="assets/blablapay-wordmark.png" alt="BlablaPay" width="1080" height="249" /></a>
-      <nav aria-label="Principal">
+      <a class="logo" href="./" aria-label="BlablaPay, inicio"><img src="assets/blablapay-wordmark.png" alt="BlablaPay" width="1080" height="249" /></a>
+      <nav class="site-nav" aria-label="Principal">
+        <a class="link" href="#que-hace">Qué hace</a>
         <a class="link" href="#como-funciona">Cómo funciona</a>
-        <a class="link" href="#piloto">Piloto</a>
+        <a class="link" href="#rubros">Para quién</a>
+        <a class="link" href="#precios">Precios</a>
         <a class="btn btn-primary" href="#contacto">Hablemos</a>
       </nav>
     </div>
   </header>
 
-  <main id="inicio">
+  <main id="contenido">
     <div class="wrap hero">
       <div>
-        <span class="tag">Asistente con IA para clínicas · Bogotá</span>
-        <h1>Tu clínica responde en WhatsApp en <em>menos de un minuto</em>, también de noche.</h1>
-        <p class="lead">BlablaPay atiende a las personas que escriben al WhatsApp de tu clínica, resuelve sus dudas con tu información y agenda la valoración con el anticipo ya pagado. Los casos que necesitan a alguien de tu equipo, te los pasa.</p>
+        <span class="tag">Para negocios que agendan por WhatsApp</span>
+        <h1>Tu asistente con IA en WhatsApp que <em>atiende, agenda y cobra</em>.</h1>
+        <p class="lead">BlablaPay responde a tus clientes en segundos, también de noche y en festivos. Les ofrece tus horarios reales, cobra el anticipo con Wompi y les recuerda la cita. Cuando alguien necesita a una persona, le pasa la conversación a tu equipo.</p>
         <div class="ctas">
-          <a class="btn btn-primary" href="#contacto">Quiero el piloto</a>
+          <a class="btn btn-primary" href="https://wa.me/573228168699?text=Hola%2C%20quiero%20probar%20BlablaPay%20en%20mi%20negocio" target="_blank" rel="noopener">Quiero probarlo gratis</a>
           <a class="btn btn-ghost" href="#como-funciona">Ver cómo funciona</a>
         </div>
+        <p class="hero-note"><strong>14 días gratis.</strong> Mientras abrimos el registro en línea, te acompañamos por WhatsApp para configurarlo.</p>
       </div>
 
-      <figure style="margin:0">
-        <div class="phone" role="img" aria-label="Conversación de ejemplo en WhatsApp entre una paciente y el asistente de una clínica">
+      <figure class="phone-fig">
+        <div class="phone" role="img" aria-label="Conversación de ejemplo en WhatsApp: una clienta agenda un masaje, paga el anticipo y confirma su asistencia desde el recordatorio">
           <div class="screen">
-            <div class="chat-top"><span class="avatar" aria-hidden="true"></span><span><b>Clínica de ejemplo</b><small>asistente virtual</small></span></div>
+            <div class="chat-top"><span class="avatar" aria-hidden="true"></span><span><b>Spa de ejemplo</b><small>asistente virtual</small></span></div>
             <div class="msgs" aria-hidden="true">
-              <div class="msg out">Hola, ¿cuánto cuesta el diseño de sonrisa?<time>10:41 p. m.</time></div>
-              <div class="msg in">¡Buenas noches! El diseño de sonrisa en resina cuesta <b>desde $1.500.000</b>. El valor final se define en la valoración. ¿Le gustaría agendarla?<time>10:41 p. m.</time></div>
-              <div class="msg out">Sí, ¿tienen algo mañana en la mañana?<time>10:42 p. m.</time></div>
-              <div class="msg in">Mañana tengo 8:00, 9:30 u 11:00 a. m. ¿Cuál le queda mejor?<time>10:42 p. m.</time></div>
-              <div class="msg out">9:30. Soy Laura Martínez.<time>10:43 p. m.</time></div>
-              <div class="msg in">Listo, Laura. Para confirmar, pague el anticipo de $80.000 aquí: <span class="link">pago.clinica.co/valoracion</span><time>10:43 p. m.</time></div>
-              <div class="msg in">✅ Pago recibido. Su valoración quedó confirmada para mañana a las 9:30 a. m.<time>10:45 p. m.</time></div>
+              <div class="msg out">Hola, ¿tienen cita para masaje este sábado?<time>9:48 p. m.</time></div>
+              <div class="msg in">¡Buenas noches! El masaje relajante de 60 minutos cuesta $120.000. El sábado tengo 9:00 a. m., 11:30 a. m. o 3:00 p. m. ¿Cuál le queda mejor?<time>9:48 p. m.</time></div>
+              <div class="msg out">11:30. Soy Andrea Gómez.<time>9:49 p. m.</time></div>
+              <div class="msg in">Listo, Andrea. Para reservar, pague el anticipo de $40.000 aquí: <span class="url">checkout.wompi.co/l/EJEMPLO</span><time>9:49 p. m.</time></div>
+              <div class="msg in">✅ Pago recibido. Su cita quedó confirmada para el sábado a las 11:30 a. m.<time>9:51 p. m.</time></div>
+              <div class="day">VIERNES</div>
+              <div class="msg in">Hola, Andrea. Le recordamos su masaje de mañana a las 11:30 a. m.<time>10:00 a. m.</time><span class="qr">Confirmo asistencia</span><span class="qr">Necesito reprogramar</span></div>
+              <div class="msg out">Confirmo asistencia<time>10:04 a. m.</time></div>
             </div>
           </div>
         </div>
@@ -175,104 +68,279 @@
       </figure>
     </div>
 
-    <section class="alt" aria-labelledby="problema">
+    <section id="que-hace" class="sec alt" aria-labelledby="que-hace-titulo">
       <div class="wrap">
-        <p class="eyebrow">El problema</p>
-        <h2 id="problema">Pagas por cada mensaje que llega, pero no siempre alguien contesta.</h2>
-        <p class="intro">Las clínicas invierten en pauta para que los pacientes escriban por WhatsApp. Lo difícil es responder a tiempo a cada uno.</p>
-        <div class="grid3">
-          <div class="card"><div class="step" aria-hidden="true">1</div><h3>Escriben cuando tu equipo no está</h3><p>Muchas consultas llegan de noche, en fines de semana o mientras tu equipo atiende pacientes en consulta.</p></div>
-          <div class="card"><div class="step" aria-hidden="true">2</div><h3>Siempre las mismas preguntas</h3><p>Precios, financiación, ubicación y horarios. Responderlas a mano quita tiempo para atender a quien ya está en la clínica.</p></div>
-          <div class="card"><div class="step" aria-hidden="true">3</div><h3>Interés que se enfría</h3><p>Quien no recibe respuesta pronto le escribe a otra clínica. Ese mensaje ya lo pagaste en pauta.</p></div>
+        <p class="eyebrow">Qué hace</p>
+        <h2 id="que-hace-titulo">Responde, agenda, cobra y te avisa.</h2>
+        <p class="intro">Hace el trabajo repetitivo de tu recepción en WhatsApp, con tu información y tus reglas, a cualquier hora.</p>
+        <div class="grid3 tablet-2">
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <h3>Atención 24/7</h3>
+            <p>Responde en segundos con tu información, de día, de noche y en festivos. También entiende notas de voz.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+            <h3>Agenda con tus horarios reales</h3>
+            <p>Ofrece dos o tres horarios libres y reserva sin dobles citas. Si usas Google Calendar, respeta lo que tu equipo ya ocupó.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+            <h3>Anticipos con Wompi</h3>
+            <p>Envía el link de pago de tu cuenta de Wompi y confirma la cita cuando se aprueba el pago. El dinero llega directo a ti.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+            <h3>Recordatorios</h3>
+            <p>Un día antes, le escribe a tu cliente para que confirme su asistencia o pida reprogramar.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Paso a tu equipo</h3>
+            <p>Si alguien escribe «asesor», tiene una queja o un caso delicado, te avisa por WhatsApp y la conversación pasa a una persona.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></div>
+            <div class="card-title"><h3>Panel</h3><span class="pill">Pronto</span></div>
+            <p>Conversaciones, citas y clientes en un solo lugar. Tomas una conversación cuando quieras y ves los resultados del mes.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="como-funciona" aria-labelledby="como">
+    <section id="como-funciona" class="sec" aria-labelledby="como-titulo">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Cómo funciona</p>
+          <h2 id="como-titulo">De registrarte a tenerlo activo, en cinco pasos.</h2>
+          <p class="intro">Tú decides qué responde, qué agenda y cuánto cobra de anticipo. No le escribe a nadie hasta que lo actives.</p>
+          <div class="note">
+            <p><strong>El registro en línea abre pronto.</strong></p>
+            <p>Mientras tanto, hacemos estos pasos contigo por <a href="https://wa.me/573228168699?text=Hola%2C%20quiero%20probar%20BlablaPay%20en%20mi%20negocio" target="_blank" rel="noopener">WhatsApp</a> o por <a href="mailto:blablapayapp@gmail.com?subject=Quiero%20probar%20BlablaPay">correo</a>.</p>
+          </div>
+        </div>
+        <ol class="steps">
+          <li><div><h3>Regístrate</h3><p>Crea tu cuenta con tu correo o con Google y cuéntanos qué hace tu negocio.</p></div></li>
+          <li><div><h3>Configúralo con la guía</h3><p>Cargas tus servicios, precios, horarios, anticipos y preguntas frecuentes. Tu rubro trae ejemplos para empezar.</p></div></li>
+          <li><div><h3>Pruébalo</h3><p>Escríbele como si fueras un cliente y ajusta lo que haga falta antes de que hable con nadie.</p></div></li>
+          <li><div><h3>Conecta tu WhatsApp</h3><p>Con la plataforma oficial de Meta. Conservas tu número y tu equipo puede seguir respondiendo desde la app WhatsApp Business.</p></div></li>
+          <li><div><h3>Actívalo</h3><p>Empieza en modo de prueba: redacta respuestas sin enviarlas para que las revises. Cuando estés tranquilo, lo activas.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="rubros" class="sec alt" aria-labelledby="rubros-titulo">
       <div class="wrap">
-        <p class="eyebrow">Cómo funciona</p>
-        <h2 id="como">Listo en pocos días, sin cambiar tu número.</h2>
-        <p class="intro">Trabajamos con tu WhatsApp, tu agenda y tus precios. Tu equipo sigue a cargo de los casos que lo necesitan.</p>
-        <div class="grid3">
-          <div class="card"><div class="step" aria-hidden="true">1</div><h3>Conectamos tu WhatsApp</h3><p>Usamos la plataforma oficial de WhatsApp Business de Meta, sin aplicaciones extrañas ni números nuevos para tus pacientes.</p></div>
-          <div class="card"><div class="step" aria-hidden="true">2</div><h3>Cargamos tu información</h3><p>Tratamientos, precios de referencia, financiación, horarios de valoración y preguntas frecuentes, revisados contigo.</p></div>
-          <div class="card"><div class="step" aria-hidden="true">3</div><h3>El asistente atiende y agenda</h3><p>Responde, agenda la valoración, envía el link de pago y confirma la cita. Lo que necesita a una persona pasa a tu equipo.</p></div>
+        <p class="eyebrow">Para quién es</p>
+        <h2 id="rubros-titulo">Para negocios que viven de su agenda.</h2>
+        <p class="intro">Si tus clientes escriben por WhatsApp para preguntar precios y pedir cita, BlablaPay les responde. Cada rubro trae ejemplos para configurarlo rápido y reglas propias.</p>
+        <div class="grid3 tablet-2">
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg></div>
+            <h3>Clínicas</h3>
+            <p>Estéticas y odontológicas. Agenda valoraciones con el anticipo pagado y nunca da diagnósticos.</p>
+            <a class="more" href="clinicas/">Ver BlablaPay para clínicas</a>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg></div>
+            <h3>Salones y spas</h3>
+            <p>Cortes, color, uñas y masajes, cada uno con su duración. Cobra el anticipo para que la reserva quede en firme.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg></div>
+            <h3>Gimnasios</h3>
+            <p>Responde por planes, horarios y sedes, y agenda la clase de prueba o la valoración física.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <h3>Talleres</h3>
+            <p>Agenda la revisión o el mantenimiento del vehículo y le dice al cliente cuánto dura y qué debe llevar.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></div>
+            <h3>Consultorios</h3>
+            <p>Psicología, nutrición, fisioterapia y más. Agenda la consulta y la recuerda, sin dar recomendaciones de salud.</p>
+          </div>
+          <div class="card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+            <h3>Academias</h3>
+            <p>Idiomas, música y cursos. Informa horarios y precios, y agenda la clase de prueba.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="alt" aria-labelledby="reglas">
+    <section id="reglas" class="sec" aria-labelledby="reglas-titulo">
       <div class="wrap">
         <p class="eyebrow">Reglas claras</p>
-        <h2 id="reglas">Hace lo que tu recepción haría, y no más.</h2>
-        <p class="intro">El asistente sigue reglas fijas que se pueden revisar. Nada de inventar precios ni de opinar sobre la salud de nadie.</p>
+        <h2 id="reglas-titulo">Hace lo que tu recepción haría, y no más.</h2>
+        <p class="intro">El asistente sigue reglas fijas que se pueden revisar. Habla solo de tu negocio y solo con tu información.</p>
         <div class="two">
           <div class="card">
-            <h3 style="margin-top:0">Lo que hace</h3>
-            <ul class="list" style="margin-top:16px">
-              <li><div><b>Responde 24/7 en segundos</b><span>Con el tono de tu clínica y solo con tu información.</span></div></li>
-              <li><div><b>Agenda con horarios reales</b><span>Ofrece los espacios libres de tu agenda, sin dobles reservas.</span></div></li>
-              <li><div><b>Cobra el anticipo</b><span>Envía el link de pago y confirma la cita cuando se aprueba.</span></div></li>
-              <li><div><b>Te pasa los casos</b><span>Si la persona escribe «asesor», tiene una queja o un síntoma, la conversación pasa a tu equipo.</span></div></li>
+            <h3>Lo que hace</h3>
+            <ul class="list">
+              <li><div><b>Responde con tu información</b><span>Servicios, precios, horarios y preguntas frecuentes que tú apruebas.</span></div></li>
+              <li><div><b>Se presenta como asistente virtual</b><span>Habla en nombre de tu negocio e informa el tratamiento de datos (Ley 1581).</span></div></li>
+              <li><div><b>Ofrece horarios reales</b><span>Solo los espacios libres de tu agenda, sin dobles reservas.</span></div></li>
+              <li><div><b>Te pasa los casos</b><span>Si alguien pide un asesor, tiene una queja o un caso delicado, la conversación pasa a tu equipo.</span></div></li>
             </ul>
           </div>
           <div class="card">
-            <h3 style="margin-top:0">Lo que nunca hace</h3>
-            <ul class="list no" style="margin-top:16px">
-              <li><div><b>Diagnosticar ni recomendar tratamientos</b><span>Eso se define en la valoración con tu especialista.</span></div></li>
-              <li><div><b>Inventar precios</b><span>Solo usa los precios de referencia que tú apruebas, siempre como «desde».</span></div></li>
-              <li><div><b>Pedir datos sensibles</b><span>No solicita historia clínica, documentos ni datos de tarjetas por chat.</span></div></li>
-              <li><div><b>Fingir ser una persona</b><span>Se presenta como asistente virtual e informa el tratamiento de datos (Ley 1581).</span></div></li>
+            <h3>Lo que nunca hace</h3>
+            <ul class="list no">
+              <li><div><b>Inventar precios ni promociones</b><span>Si algo no está en tu información, no lo promete.</span></div></li>
+              <li><div><b>Pedir datos sensibles</b><span>No solicita datos de tarjetas, cuentas bancarias ni documentos por chat.</span></div></li>
+              <li><div><b>Dar consejos profesionales</b><span>Nada de diagnósticos ni recomendaciones médicas, legales o financieras.</span></div></li>
+              <li><div><b>Hablar de cualquier tema</b><span>No es un chat de propósito general: solo atiende temas de tu negocio.</span></div></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="piloto" aria-labelledby="piloto-titulo">
+    <!-- PRECIOS PROVISIONALES: aprobados para publicarse con el aviso «Valores provisionales» (prueba 14 días y 50 conversaciones; Esencial 79.000 + 10.000 por cita; Crecimiento 199.000 + 7.000 por cita). Si cambian, actualizar también la prueba en terminos/#precios y en clinicas/. -->
+    <section id="precios" class="sec alt" aria-labelledby="precios-titulo">
       <div class="wrap">
-        <div class="pilot">
-          <div>
-            <p class="eyebrow">Piloto de lanzamiento</p>
-            <h2 id="piloto-titulo">30 días para comprobarlo con tus propios pacientes.</h2>
-            <p>Buscamos clínicas de odontología y medicina estética en Bogotá para el primer piloto. Configuramos todo contigo y revisamos juntos los resultados cada semana.</p>
-            <p>Si al final no ves el valor, se apaga y listo.</p>
-          </div>
-          <div class="price">
-            <div class="big">$0 fijo</div>
-            <ul>
-              <li>Sin costo de implementación ni mensualidad durante el piloto.</li>
-              <li>Pagas solo por cada valoración agendada y pagada por el asistente.</li>
-              <li>Reporte semanal: mensajes atendidos, citas y tiempos de respuesta.</li>
+        <p class="eyebrow">Precios</p>
+        <h2 id="precios-titulo">Una mensualidad baja y una comisión solo por citas logradas.</h2>
+        <p class="intro">Pagas poco por tener el asistente y el resto solo cuando consigue una cita. Empiezas con 14 días gratis.</p>
+        <div class="notice" role="note">
+          <p><strong>Valores provisionales.</strong> Estamos validando estos precios antes del lanzamiento y pueden cambiar. Te confirmamos el valor antes de cualquier cobro.</p>
+        </div>
+        <div class="plans">
+          <article class="plan start" aria-labelledby="plan-prueba">
+            <div class="plan-head"><h3 id="plan-prueba">Prueba</h3><span class="pill">Empieza aquí</span></div>
+            <p class="for">Para configurarlo y verlo funcionar con tus clientes.</p>
+            <p class="amount">14 días <small>gratis</small></p>
+            <p class="fee">Sin comisión</p>
+            <ul class="list">
+              <li><div>Hasta 50 conversaciones</div></li>
+              <li><div>Todo el asistente: agenda, anticipos y recordatorios</div></li>
+              <li><div>Te acompañamos en la configuración</div></li>
             </ul>
-            <a class="btn btn-primary" href="#contacto">Postular mi clínica</a>
-          </div>
+            <a class="btn btn-primary" href="https://wa.me/573228168699?text=Hola%2C%20quiero%20probar%20BlablaPay%20en%20mi%20negocio" target="_blank" rel="noopener">Quiero probarlo gratis</a>
+          </article>
+          <article class="plan" aria-labelledby="plan-esencial">
+            <div class="plan-head"><h3 id="plan-esencial">Esencial</h3></div>
+            <p class="for">Para negocios que empiezan a agendar por WhatsApp.</p>
+            <p class="amount">$79.000 <small>al mes</small></p>
+            <p class="fee">+ <span>$10.000</span> por cita lograda</p>
+            <ul class="list">
+              <li><div>150 conversaciones al mes</div></li>
+              <li><div>Todas las funciones del asistente</div></li>
+              <li><div>Soporte por WhatsApp y correo</div></li>
+            </ul>
+            <a class="btn btn-ghost" href="https://wa.me/573228168699?text=Hola%2C%20me%20interesa%20el%20plan%20Esencial%20de%20BlablaPay" target="_blank" rel="noopener">Me interesa Esencial</a>
+          </article>
+          <article class="plan" aria-labelledby="plan-crecimiento">
+            <div class="plan-head"><h3 id="plan-crecimiento">Crecimiento</h3></div>
+            <p class="for">Para negocios con más movimiento en su WhatsApp.</p>
+            <p class="amount">$199.000 <small>al mes</small></p>
+            <p class="fee">+ <span>$7.000</span> por cita lograda</p>
+            <ul class="list">
+              <li><div>500 conversaciones al mes</div></li>
+              <li><div>Todas las funciones del asistente</div></li>
+              <li><div>Sale más barato que Esencial desde 40 citas logradas al mes</div></li>
+            </ul>
+            <a class="btn btn-ghost" href="https://wa.me/573228168699?text=Hola%2C%20me%20interesa%20el%20plan%20Crecimiento%20de%20BlablaPay" target="_blank" rel="noopener">Me interesa Crecimiento</a>
+          </article>
+        </div>
+        <dl class="fineprint">
+          <div><dt>¿Qué es una cita lograda?</dt><dd>Una cita que agenda el asistente y que tu cliente paga con el anticipo o confirma desde el recordatorio. Se cobra una sola vez por cita.</dd></div>
+          <div><dt>¿Qué cuenta como conversación?</dt><dd>Cada cliente que te escribe, por periodos de 24 horas, sin importar cuántos mensajes mande.</dd></div>
+          <div><dt>¿Y si me paso del límite?</dt><dd>Te avisamos al llegar al 80 % y al 100 %. Después, el asistente pasa las conversaciones nuevas a tu equipo con un mensaje amable, para que nadie se quede sin respuesta.</dd></div>
+          <div><dt>¿Hay otros costos?</dt><dd>Wompi cobra su tarifa por cada pago, según tu contrato con Wompi. Meta le cobra directamente a tu negocio algunos mensajes que tu negocio inicia, como los recordatorios. Los precios están en pesos colombianos.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="preguntas" class="sec" aria-labelledby="preguntas-titulo">
+      <div class="wrap">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 id="preguntas-titulo">Lo que nos preguntan antes de empezar.</h2>
+        <div class="faq">
+          <details>
+            <summary>¿Tengo que cambiar mi número de WhatsApp?</summary>
+            <div class="answer"><p>No. Conectas el número que ya usan tus clientes, con la plataforma oficial de WhatsApp Business de Meta.</p></div>
+          </details>
+          <details>
+            <summary>¿Qué pasa si el asistente no sabe algo?</summary>
+            <div class="answer"><p>No inventa. Responde solo con la información que cargaste y, si algo no está ahí, le pasa la conversación a tu equipo.</p></div>
+          </details>
+          <details>
+            <summary>¿Quién recibe el dinero de los anticipos?</summary>
+            <div class="answer"><p>Tu negocio, directo en su cuenta de Wompi. BlablaPay nunca recibe ni guarda ese dinero.</p></div>
+          </details>
+          <details>
+            <summary>¿Mis clientes saben que hablan con un asistente?</summary>
+            <div class="answer"><p>Sí. Se presenta como asistente virtual de tu negocio e informa cómo se tratan sus datos, como pide la Ley 1581 de 2012.</p></div>
+          </details>
+          <details>
+            <summary>¿Puedo apagarlo cuando quiera?</summary>
+            <div class="answer"><p>Sí. Puedes pausarlo o dejarlo activo solo fuera del horario de tu equipo. Y puedes cancelar el servicio cuando quieras.</p></div>
+          </details>
+          <details>
+            <summary>¿Cómo se protegen los datos de mis clientes?</summary>
+            <div class="answer"><p>Tu negocio es el responsable de esos datos y BlablaPay los trata por tu cuenta, con un <a href="transmision-datos/">contrato de transmisión de datos</a> según la Ley 1581. Los detalles están en la <a href="../privacidad/">política de privacidad</a>.</p></div>
+          </details>
         </div>
       </div>
     </section>
 
-    <section id="contacto" class="alt contact" aria-labelledby="contacto-titulo">
+    <section id="contacto" class="sec alt contact center" aria-labelledby="contacto-titulo">
       <div class="wrap">
         <p class="eyebrow">Contacto</p>
-        <h2 id="contacto-titulo">Te mostramos el asistente en 15 minutos.</h2>
-        <p class="intro" style="margin-inline:auto">Cuéntanos el nombre de tu clínica y te enviamos una demostración con tus propios tratamientos.</p>
+        <h2 id="contacto-titulo">Te mostramos el asistente con la información de tu negocio.</h2>
+        <p class="intro">Cuéntanos qué servicios agendas y te enviamos una demostración. Si te gusta, lo configuramos contigo.</p>
         <ul class="canales">
-          <li><span>WhatsApp</span><a href="https://wa.me/573228168699?text=Hola%2C%20quiero%20conocer%20BlablaPay%20para%20mi%20cl%C3%ADnica" target="_blank" rel="noopener">+57 322 816 8699</a></li>
-          <li><span>Correo</span><a href="mailto:blablapayapp@gmail.com?subject=Piloto%20BlablaPay">blablapayapp@gmail.com</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/573228168699?text=Hola%2C%20quiero%20conocer%20BlablaPay%20para%20mi%20negocio" target="_blank" rel="noopener">+57&nbsp;322&nbsp;816&nbsp;8699</a></li>
+          <li><span>Correo</span><a href="mailto:blablapayapp@gmail.com?subject=Quiero%20probar%20BlablaPay">blablapayapp@gmail.com</a></li>
           <li><span>Instagram</span><a href="https://www.instagram.com/blablapay/" target="_blank" rel="noopener">@blablapay</a></li>
         </ul>
         <div class="ctas">
-          <a class="btn btn-primary" href="https://wa.me/573228168699?text=Hola%2C%20quiero%20conocer%20BlablaPay%20para%20mi%20cl%C3%ADnica" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-          <a class="btn btn-ghost" href="mailto:blablapayapp@gmail.com?subject=Piloto%20BlablaPay">Escribir un correo</a>
+          <a class="btn btn-primary" href="https://wa.me/573228168699?text=Hola%2C%20quiero%20conocer%20BlablaPay%20para%20mi%20negocio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:blablapayapp@gmail.com?subject=Quiero%20probar%20BlablaPay">Escribir un correo</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
+  <footer class="site-footer">
+    <div class="wrap foot">
+      <div class="foot-brand">
+        <img src="assets/blablapay-wordmark.png" alt="BlablaPay" width="1080" height="249" loading="lazy" />
+        <p>Asistente con IA en WhatsApp que atiende, agenda y cobra. Bogotá, Colombia.</p>
+      </div>
+      <nav aria-label="Producto">
+        <p class="foot-title">Producto</p>
+        <ul>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="clinicas/">Para clínicas</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Legal">
+        <p class="foot-title">Legal</p>
+        <ul>
+          <li><a href="terminos/">Términos del servicio</a></li>
+          <li><a href="../privacidad/">Política de privacidad</a></li>
+          <li><a href="transmision-datos/">Contrato de transmisión de datos</a></li>
+          <li><a href="uso-aceptable/">Política de uso aceptable</a></li>
+          <li><a href="../privacidad/#eliminar-datos">Eliminar mis datos</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Contacto">
+        <p class="foot-title">Contacto</p>
+        <ul>
+          <li><a href="https://wa.me/573228168699" target="_blank" rel="noopener">WhatsApp +57&nbsp;322&nbsp;816&nbsp;8699</a></li>
+          <li><a href="mailto:blablapayapp@gmail.com">blablapayapp@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/blablapay/" target="_blank" rel="noopener">Instagram @blablapay</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap foot-bottom">
       <span>BlablaPay es un proyecto de Cristhian Forero · Bogotá, Colombia · © 2026</span>
-      <span><a href="https://www.instagram.com/blablapay/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:blablapayapp@gmail.com">blablapayapp@gmail.com</a> · <a href="../privacidad/">Política de privacidad</a> · <a href="../privacidad/#eliminar-datos">Eliminar mis datos</a></span>
     </div>
   </footer>
 </body>
